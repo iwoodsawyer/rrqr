@@ -47,13 +47,13 @@ void rrqrx_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     /* determine job and economy size */
     if (nrhs == 3) {
-        job = (ptrdiff_t)mxGetScalar(prhs[1]);
+        job = (mwSignedIndex)mxGetScalar(prhs[1]);
         if (mxGetScalar(prhs[2]) == 0) {
             econ = 1;
         }
     }
     else if (nrhs == 2) {
-        job = (ptrdiff_t)mxGetScalar(prhs[1]);
+        job = (mwSignedIndex)mxGetScalar(prhs[1]);
         if (job == 0) {
             econ = 1;
             job = 3;
@@ -383,13 +383,13 @@ void rrqrx_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     /* determine job and economy size */
     if (nrhs == 3) {
-        job = (ptrdiff_t)mxGetScalar(prhs[1]);
+        job = (mwSignedIndex)mxGetScalar(prhs[1]);
         if (mxGetScalar(prhs[2]) == 0) {
             econ = 1;
         }
     }
     else if (nrhs == 2) {
-        job = (ptrdiff_t)mxGetScalar(prhs[1]);
+        job = (mwSignedIndex)mxGetScalar(prhs[1]);
         if (job == 0) {
             econ = 1;
             job = 3;
