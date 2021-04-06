@@ -24,18 +24,19 @@
 
 void rrqry_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
-    ptrdiff_t *Pp, ipspec, lwork, rank, job, info = 1;
+    mwSignedIndex *Pp, ipspec, lwork, rank, job, info = 1;
     double p, orcond, ircond = 0;
     double *Qpr, *Rpr, *Ipr, *Ppr, *Ap, *Cp, *slvalues, *pwork, *rwork;
     #if !(MX_HAS_INTERLEAVED_COMPLEX)
     double *Qpi, *Rpi, *Ipi;
     #endif
     char name[] = "DGEQRF", opts[] = " ";
-    size_t m, n, n2, k, ldc, ldr, max_mn, min_mn, nb;
-    size_t element_size = sizeof(double), econ = 0, cplx = 0, dc = 1;
-    mwIndex i, j, limit;
+    mwSignedIndex m, n, n2, k, ldc, ldr, max_mn, min_mn, nb;
+    mwSignedIndex econ = 0, cplx = 0, dc = 1;
+    mwSignedIndex i, j, limit;
     mxClassID classid = mxDOUBLE_CLASS;
     mxComplexity cplxflag = mxREAL;
+    size_t element_size = sizeof(double);
     
     /* check complex */
     if (mxIsComplex(prhs[0])) {
@@ -46,13 +47,13 @@ void rrqry_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     /* determine job and economy size */
     if (nrhs == 3) {
-        job = (ptrdiff_t)mxGetScalar(prhs[1]);
+        job = (mwSignedIndex)mxGetScalar(prhs[1]);
         if (mxGetScalar(prhs[2]) == 0) {
             econ = 1;
         }
     }
     else if (nrhs == 2) {
-        job = (ptrdiff_t)mxGetScalar(prhs[1]);
+        job = (mwSignedIndex)mxGetScalar(prhs[1]);
         if (job == 0) {
             econ = 1;
             job = 3;
@@ -146,7 +147,7 @@ void rrqry_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
     
     /* allocate P matrix */
-    Pp = mxMalloc(n*sizeof(ptrdiff_t));
+    Pp = mxMalloc(n*sizeof(mwSignedIndex));
     
     /* copy input to A matrix */
     Ipr = mxGetData(prhs[0]);
@@ -358,7 +359,7 @@ void rrqry_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 void rrqry_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
-    ptrdiff_t *Pp, ipspec, lwork, rank, job, info = 1;
+    mwSignedIndex *Pp, ipspec, lwork, rank, job, info = 1;
     float p, orcond, ircond = 0;
     float *Qpr, *Rpr, *Ipr, *Ap, *Cp, *slvalues, *pwork, *rwork;
     #if !(MX_HAS_INTERLEAVED_COMPLEX)
@@ -366,11 +367,12 @@ void rrqry_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     #endif
     double *Ppr;
     char name[] = "SGEQRF", opts[] = " ";
-    size_t m, n, n2, k, ldc, ldr, max_mn, min_mn, nb;
-    size_t element_size = sizeof(float), econ = 0, cplx = 0, dc = 1;
-    mwIndex i, j, limit;
+    mwSignedIndex m, n, n2, k, ldc, ldr, max_mn, min_mn, nb;
+    mwSignedIndex econ = 0, cplx = 0, dc = 1;
+    mwSignedIndex i, j, limit;
     mxClassID classid = mxSINGLE_CLASS;
     mxComplexity cplxflag = mxREAL;
+    size_t element_size = sizeof(float);
     
     /* check complex */
     if (mxIsComplex(prhs[0])) {
