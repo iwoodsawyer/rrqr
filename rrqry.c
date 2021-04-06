@@ -16,16 +16,11 @@
  * mex -O rrqry.c libmwblas.lib libmwlapack.lib rrqr.lib (>= R2007B)
  *
  * calls the DGEQPY/SGEQPY/CGEQPY/ZGEQPY functions from RRQR library
- *
- * Ivo Houtzager
- *
- * Delft Center of Systems and Control
- * The Netherlands, 2010
  */
 
 #include "mex.h"
 #include "matrix.h"
-#include "src/rrqr.h"
+#include "rrqr.h"
 
 void rrqry_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {

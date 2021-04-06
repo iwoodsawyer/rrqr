@@ -16,31 +16,27 @@
  * mex -O rrqrx.c libmwblas.lib libmwlapack.lib rrqr.lib (>= R2007B)
  *
  * calls the DGEQPX/SGEQPX/CGEQPX/ZGEQPX functions from RRQR library
- *
- * Ivo Houtzager
- *
- * Delft Center of Systems and Control
- * The Netherlands, 2010
  */
 
 #include "mex.h"
 #include "matrix.h"
-#include "src/rrqr.h"
+#include "rrqr.h"
 
 void rrqrx_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
-    ptrdiff_t *Pp, ipspec, lwork, rank, job, info = 1;
+    mwSignedIndex *Pp, ipspec, lwork, rank, job, info = 1;
     double p, orcond, ircond = 0;
     double *Qpr, *Rpr, *Ipr, *Ppr, *Ap, *Cp, *slvalues, *pwork, *rwork;
     #if !(MX_HAS_INTERLEAVED_COMPLEX)
     double *Qpi, *Rpi, *Ipi;
     #endif
     char name[] = "DGEQRF", opts[] = " ";
-    size_t m, n, n2, k, ldc, ldr, max_mn, min_mn, nb;
-    size_t element_size = sizeof(double), econ = 0, cplx = 0, dc = 1;
-    mwIndex i, j, limit;
+    mwSignedIndex m, n, n2, k, ldc, ldr, max_mn, min_mn, nb;
+    mwSignedIndex econ = 0, cplx = 0, dc = 1;
+    mwSignedIndex i, j, limit;
     mxClassID classid = mxDOUBLE_CLASS;
     mxComplexity cplxflag = mxREAL;
+    size_t element_size = sizeof(double);
     
     /* check complex */
     if (mxIsComplex(prhs[0])) {
@@ -151,7 +147,7 @@ void rrqrx_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
     
     /* allocate P matrix */
-    Pp = mxMalloc(n*sizeof(ptrdiff_t));
+    Pp = mxMalloc(n*sizeof(mwSignedIndex));
     
     /* copy input to A matrix */
     Ipr = mxGetData(prhs[0]);
@@ -363,7 +359,7 @@ void rrqrx_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 void rrqrx_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {   
-    ptrdiff_t *Pp, ipspec, lwork, rank, job, info = 1;
+    mwSignedIndex *Pp, ipspec, lwork, rank, job, info = 1;
     float p, orcond, ircond = 0;
     float *Qpr, *Rpr, *Ipr, *Ap, *Cp, *slvalues, *pwork, *rwork;
     #if !(MX_HAS_INTERLEAVED_COMPLEX)
@@ -371,11 +367,12 @@ void rrqrx_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     #endif
     double *Ppr;
     char name[] = "SGEQRF", opts[] = " ";
-    size_t m, n, n2, k, ldc, ldr, max_mn, min_mn, nb; 
-    size_t element_size = sizeof(float), econ = 0, cplx = 0, dc = 1;
-    mwIndex i, j, limit;
+    mwSignedIndex m, n, n2, k, ldc, ldr, max_mn, min_mn, nb; 
+    mwSignedIndex econ = 0, cplx = 0, dc = 1;
+    mwSignedIndex i, j, limit;
     mxClassID classid = mxSINGLE_CLASS;
     mxComplexity cplxflag = mxREAL;
+    size_t element_size = sizeof(float);
     
     /* check complex */
     if (mxIsComplex(prhs[0])) {
@@ -486,7 +483,7 @@ void rrqrx_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
     
     /* allocate P matrix */
-    Pp = mxMalloc(n*sizeof(ptrdiff_t));
+    Pp = mxMalloc(n*sizeof(mwSignedIndex));
     
     /* copy input to A matrix */
     Ipr = mxGetData(prhs[0]);
