@@ -199,10 +199,13 @@ void rrqrx_double(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     /* calls the DGEQPY function */
     if (cplx) {
-        zgeqpx(&job, &m, &n, &k, Ap, &m, Cp, &ldc, Pp, &ircond, &orcond, &rank, slvalues, pwork, &lwork, rwork, &info);
+        zgeqpx(&job, &m, &n, &k, (doublecomplex *)Ap, &m, 
+                (doublecomplex *)Cp, &ldc, Pp, &ircond, &orcond, &rank, 
+                slvalues, (doublecomplex *)pwork, &lwork, rwork, &info);
     }
     else {
-        dgeqpx(&job, &m, &n, &k, Ap, &m, Cp, &ldc, Pp, &ircond, &orcond, &rank, slvalues, pwork, &lwork, &info);
+        dgeqpx(&job, &m, &n, &k, Ap, &m, Cp, &ldc, Pp, &ircond, &orcond, 
+                &rank, slvalues, pwork, &lwork, &info);
     }
     mxFree(pwork);
     mxFree(slvalues);
@@ -535,10 +538,13 @@ void rrqrx_single(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     /* calls the DGEQPY function */
     if (cplx) {
-        cgeqpx(&job, &m, &n, &k, Ap, &m, Cp, &ldc, Pp, &ircond, &orcond, &rank, slvalues, pwork, &lwork, rwork, &info);
+        cgeqpx(&job, &m, &n, &k, (complex *)Ap, &m, (complex *)Cp, &ldc, 
+                Pp, &ircond, &orcond, &rank, slvalues, (complex *)pwork, 
+                &lwork, rwork, &info);
     }
     else {
-        sgeqpx(&job, &m, &n, &k, Ap, &m, Cp, &ldc, Pp, &ircond, &orcond, &rank, slvalues, pwork, &lwork, &info);
+        sgeqpx(&job, &m, &n, &k, Ap, &m, Cp, &ldc, Pp, &ircond, &orcond, 
+                &rank, slvalues, pwork, &lwork, &info);
     }
     mxFree(pwork);
     mxFree(slvalues);
