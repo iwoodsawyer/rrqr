@@ -236,7 +236,7 @@
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("ZGEQPY", &i__1);
+	xerbla("ZGEQPY", &i__1, 6);
 	return 0;
     }
 

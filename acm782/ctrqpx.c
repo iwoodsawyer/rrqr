@@ -240,7 +240,7 @@ static integer c__0 = 0;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("CTRQPX", &i__1);
+	xerbla("CTRQPX", &i__1, 6);
 	return 0;
     }
 

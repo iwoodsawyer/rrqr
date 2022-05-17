@@ -232,7 +232,7 @@
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("SGEQPX", &i__1);
+	xerbla("SGEQPX", &i__1, 6);
 	return 0;
     }
 

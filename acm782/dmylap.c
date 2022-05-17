@@ -145,7 +145,7 @@ static integer c__2 = 2;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("DGEQPF", &i__1);
+	xerbla("DGEQPF", &i__1, 6);
 	return 0;
     }
 
@@ -402,7 +402,7 @@ static integer c__2 = 2;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("DGEQRF", &i__1);
+	xerbla("DGEQRF", &i__1, 6);
 	return 0;
     }
 
@@ -611,7 +611,7 @@ static integer c__2 = 2;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("DGEQR2", &i__1);
+	xerbla("DGEQR2", &i__1, 6);
 	return 0;
     }
 

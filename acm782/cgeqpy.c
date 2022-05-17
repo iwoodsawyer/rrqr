@@ -235,7 +235,7 @@
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("CGEQPY", &i__1);
+	xerbla("CGEQPY", &i__1, 6);
 	return 0;
     }
 
