@@ -219,7 +219,7 @@ static integer c__2 = 2;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("DTRQYC", &i__1);
+	xerbla("DTRQYC", &i__1, 6);
 	return 0;
     }
 

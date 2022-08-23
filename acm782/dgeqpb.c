@@ -276,7 +276,7 @@ static integer c__3 = 3;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("DGEQPB", &i__1);
+	xerbla("DGEQPB", &i__1, 6);
 	return 0;
     }
 

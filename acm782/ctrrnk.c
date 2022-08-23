@@ -100,7 +100,7 @@ static integer c__1 = 1;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla("CTRRNK", &i__1);
+	xerbla("CTRRNK", &i__1, 6);
 	return 0;
     }
 
